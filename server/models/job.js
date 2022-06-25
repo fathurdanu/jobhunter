@@ -63,6 +63,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     status: DataTypes.STRING
   }, {
+    hooks:{
+      beforeCreate: function (job, options) {
+        job.status = "open"
+      },
+    },
     sequelize,
     modelName: 'Job',
   });

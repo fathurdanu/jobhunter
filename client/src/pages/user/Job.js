@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
-import { Header, Footer, Banner } from '../../components';
+import { Header, Footer } from '../../components';
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams} from "react-router-dom";
 import { getJobById } from "../../actions/jobActions";
+import { capitalize } from '../../helper/string_tools';
+import DOMPurify from 'dompurify';
 
 function Job() {
     const { action, status, data } = useSelector((state) => state.jobReducer);
@@ -13,13 +15,13 @@ function Job() {
     useEffect(() => {
         if (!localStorage.getItem("access_token")) {
             navigate('/login');
+        } else {
+            if (localStorage.getItem("type") !== "user") {
+                navigate('/company/create-job');
+            }
         };
         dispatch(getJobById(+id));
     }, []);
-
-    const capitalize = (str) => {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    }
 
     return (
         <div className="">
@@ -39,15 +41,14 @@ function Job() {
                                     <hr className="border-darkColor" />
                                 </div>
                                 <div className="grid grid-cols-12">
-                                    <div className="col-span-7 p-5">
-                                        {data.description}
+                                    <div className="col-span-8 p-5" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.description) }} >
                                     </div>
-                                    <div className="col-span-5">
+                                    <div className="col-span-4">
 
                                         {/* card company */}
                                         <div className="border-4 border-darkColor rounded-md mb-5 p-1 mt-5  bg-darkColor text-white shadow-md shadow-stone-500">
                                             <div className="border-2 p-5 rounded-sm">
-                                                <div className="grid grid-cols-2 pb-2">
+                                                <div className="grid grid-cols-2 pb-2 mb-2 border-b-2 border-white">
                                                     <div className="text-xl font-bold">
                                                         {data.User.name}
                                                     </div>
@@ -55,8 +56,8 @@ function Job() {
                                                         {/* {data.User.name} */}
                                                     </div>
                                                 </div>
-                                                <div className="">
-                                                    <img src={data.User.image} />
+                                                <div className="bg-white p-5 rounded-md">
+                                                    <img alt="company logo" src={data.User.image} />
                                                 </div>
                                                 <div className="">
                                                     {data.officialWeb}

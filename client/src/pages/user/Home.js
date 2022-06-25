@@ -8,6 +8,10 @@ function Home() {
     useEffect(() => {
         if (!localStorage.getItem("access_token")) {
             navigate('/login');
+        } else {
+            if (localStorage.getItem("type") !== "user") {
+                navigate('/company/create-job');
+            }
         };
     }, []);
 

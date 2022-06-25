@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { dataToQuery } from '../helper/string_tools'
 
 function Banner() {
 
@@ -15,36 +16,8 @@ function Banner() {
     // const [querySearch, setQuerySearch] = useState("")
 
     const searchHandling = () => {
-        let querySearch = "" 
-        // setQuerySearch("");
-
-        if (searchForm["isFullTime"] === true || searchForm["isFullTime"] === false) {
-            if (searchForm.isFullTime === true) {
-                querySearch = querySearch + "fulltime"
-            } else {
-                querySearch = querySearch + "parttime"
-            }
-
-            if (searchForm.location !== "" || searchForm.jobDesc !== "") {
-                querySearch = "-" + querySearch
-            }
-        }
-        if (searchForm.location !== "") {
-            querySearch = searchForm.location + querySearch
-            if (searchForm.jobDesc !== "") {
-                querySearch = "-jobs-in-" + querySearch.replace(" ", "-")
-            }else{
-                querySearch = "jobs-in-" + querySearch.replace(" ", "-")
-            }
-        }
-
-        if (!searchForm.jobDesc !== "") {
-            querySearch = searchForm.jobDesc + querySearch.replace(" ", "-")
-        }
-
-        navigate("/main/"+querySearch);
-        // console.log(querySearch);
-
+        let querySearch = dataToQuery(searchForm);
+        navigate("/main/" + querySearch);
     }
 
     return (

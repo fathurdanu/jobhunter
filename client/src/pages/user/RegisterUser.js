@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { register,clear } from "../../actions/userActions";
 
 function RegisterUser() {
-  const { action, status, data } = useSelector((state) => state.userReducer);
+  const { action, status } = useSelector((state) => state.userReducer);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -39,7 +39,8 @@ function RegisterUser() {
   };
 
   return (
-    <div className="mx-auto lg:w-2/5 md:w-3/5 sm:w-96 bg-white rounded-md">
+    <div className="flex justify-center items-center min-h-screen">
+    <div className="lg:w-2/5 md:w-3/5 sm:w-96 bg-white rounded-md border-2 border-darkColor">
       <div className="p-5">
         <div className="py-4 text-5xl font-bold text-darkColor text-center">
           Register
@@ -60,7 +61,7 @@ function RegisterUser() {
                     ? URL.createObjectURL(form.image)
                     : "https://www.w3schools.com/howto/img_avatar.png"
                 }
-                alt="Profile Picture"
+                alt="Profile"
               />
             </label>
             <input
@@ -142,6 +143,7 @@ function RegisterUser() {
           </h1>
         </div>
       </div>
+    </div>
     </div>
   );
 }

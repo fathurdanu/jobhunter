@@ -5,7 +5,7 @@ import { login } from '../actions/userActions';
 import Swal from 'sweetalert2'
 
 function Login() {
-  const { action, status, data } = useSelector(state => state.userReducer)
+  const { data } = useSelector(state => state.userReducer)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [form, setForm] = useState({
@@ -20,10 +20,10 @@ function Login() {
         navigate('/home');
       } else if (localStorage.getItem("type") === "company") {
         Swal.fire("Login Success!", "Logged in as Company", "success");
-        // navigate('/cms/dashboard');
+        navigate('/company/create-job');
       }
     };
-  }, [data]);
+  });
 
   const loginHandler = () => {
     dispatch(login(form));

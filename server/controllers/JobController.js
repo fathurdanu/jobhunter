@@ -86,8 +86,8 @@ class JobController {
 
     static async create(req, res, next) {
         try {
+            const id = +req.userData.id;
             const {
-                UserId,
                 jobName,
                 location,
                 description,
@@ -99,7 +99,7 @@ class JobController {
 
             } = req.body
             let result = await Job.create({
-                UserId,
+                UserId:id,
                 jobName,
                 location,
                 description,

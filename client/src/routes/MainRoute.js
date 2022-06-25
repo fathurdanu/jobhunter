@@ -5,7 +5,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "../pages/Login";
 import { RegisterUser, Home, Search, Job } from "../pages/user";
-import { RegisterCompany } from "../pages/company";
+import { RegisterCompany, AddJob } from "../pages/company";
 const MainRoute = () => {
   return (
     <Routes>
@@ -21,6 +21,10 @@ const MainRoute = () => {
         <Route path="" element={<Search />}></Route>
         <Route path=":query" element={<Search />}></Route>
         <Route path="jobs/:id" element={<Job />}></Route>
+      </Route>
+
+      <Route path="company">
+        <Route path="create-job" element={< AddJob />}></Route>
       </Route>
 
       {/* <Route path="main" element={<Search />}></Route>

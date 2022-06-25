@@ -95,50 +95,56 @@ export const getJobById = (id) => {
   };
 };
 
-// export const getOrder = (id) => {
-//   return (dispatch) => {
-//     // Loading
-//     dispatch({
-//       type: "GET_ORDER",
-//       payload: {
-//         status: "loading",
-//         data: "Loading",
-//       },
-//     });
+export const createJob = (data) => {
+  return (dispatch) => {
+    // Loading
+    dispatch({
+      type: "CREATE_JOB",
+      payload: {
+        status: "loading",
+        data: "Loading",
+      },
+    });
 
-//     // Success
-//     axios({
-//       method: "GET",
-//       url: url + "/orders/" + id,
-//       headers: {
-//         access_token: localStorage.getItem("access_token"),
-//       },
-//     })
-//       .then((response) => {
-//         dispatch({
-//           type: "GET_ORDER",
-//           payload: {
-//             status: "data",
-//             data: response.data,
-//           },
-//         });
-//       })
-//       .catch((error) => {
-//         Swal.fire({
-//           icon: "error",
-//           title: "Oops...",
-//           text: error.response.data.message,
-//         });
-//         dispatch({
-//           type: "GET_ORDER",
-//           payload: {
-//             status: "error",
-//             data: error.message,
-//           },
-//         });
-//       });
-//   };
-// };
+    // Success
+    axios({
+      method: "POST",
+      url: url,
+      data: data,
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    })
+      .then((response) => {
+        Swal.fire(
+          'Success!',
+          'Job has been created!',
+          'success'
+        )
+        dispatch({
+          type: "CREATE_JOB",
+          payload: {
+            status: "data",
+            data: response.data,
+          },
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message,
+        });
+        dispatch({
+          type: "CREATE_JOB",
+          payload: {
+            status: "error",
+            data: error.message,
+          },
+        });
+      });
+  };
+};
 
 // export const getOrdersByUserId = () => {
 //   return (dispatch) => {

@@ -20,13 +20,13 @@ const jobReducer = (state = initialState, { type, payload }) => {
         status: payload.status,
         data: payload.data,
       };
-    // case "GET_ORDER":
-    //   return {
-    //     ...state,
-    //     action: "GET_ORDER",
-    //     status: payload.status,
-    //     data: payload.data,
-    //   };
+    case "CREATE_JOB":
+      return {
+        ...state,
+        action: "CREATE_JOB",
+        status: payload.status,
+        data: payload.data,
+      };
     // case "GET_ORDERS_BY_USER_ID":
     //   return {
     //     ...state,
