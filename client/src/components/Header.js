@@ -9,7 +9,7 @@ const Header = () => {
       <div className="container grid grid-cols-2 py-3 mx-auto">
         
         <div className="w-full lg:h-20 flex justify-start items-center">
-          <Link to="/user/home" className="text-2xl text-white font-semibold px-3">
+          <Link to="/home" className="text-2xl text-white font-semibold px-3">
             <img alt="logo" className="h-20" src={logo} />
           </Link>
           <p className="text-2xl font-bold text-lightColor">JOBHUNTER</p>

@@ -33,7 +33,7 @@ function Login() {
     <div className="flex justify-center items-center h-screen bg-gray-200">
       <div>
         <div className="text-center text-5xl font-bold text-darkColor pb-5">JOBHUNTER</div>
-        <div className="lg:w-96 md:w-3/5 sm:w-96 bg-white rounded-md border-2 border-darkColor">
+        <div className="lg:w-96 md:w-96 sm:w-96 bg-white rounded-md border-2 border-darkColor">
           <div className="p-5">
             <div className="py-4 text-5xl font-bold text-darkColor text-center">
               Login
